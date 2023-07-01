@@ -1,6 +1,7 @@
 import React from 'react';
 import ExpenseItem  from "./ExpenseItem";
 import Card  from "../UI/composition_example/Card";
+import ExpensesFilter  from './ExpenseFilter';
 
 function Expenses() {
 
@@ -29,7 +30,9 @@ function Expenses() {
 
   return (
     <div>
-   
+      
+      <ExpensesFilter />
+      
       {/* <div>
         <ExpenseItem expense={expenses[0]}></ExpenseItem>
         <ExpenseItem expense={expenses[1]}></ExpenseItem>
@@ -39,6 +42,7 @@ function Expenses() {
 
  {/* Composition Example  */}
       <Card>
+
         <ExpenseItem expense={expenses[0]}></ExpenseItem>
         <ExpenseItem expense={expenses[1]}></ExpenseItem>
         <ExpenseItem expense={expenses[2]}></ExpenseItem>
@@ -53,27 +57,3 @@ function Expenses() {
 export default Expenses;
 
 
-
-
-   {/* <div>
-        <ExpenseItem
-          expenseItemDesc={expenses[0].expenseDesc}
-          cost={expenses[0].cost}
-          date={expenses[0].date}
-        ></ExpenseItem>
-        <ExpenseItem
-          expenseItemDesc={expenses[1].expenseDesc}
-          cost={expenses[1].cost}
-          date={expenses[1].date}
-        ></ExpenseItem>
-        <ExpenseItem
-          expenseItemDesc={expenses[2].expenseDesc}
-          cost={expenses[2].cost}
-          date={expenses[2].date}
-        ></ExpenseItem>
-        <ExpenseItem
-          expenseItemDesc={expenses[3].expenseDesc}
-          cost={expenses[3].cost}
-          date={expenses[3].date}
-        ></ExpenseItem>
-      </div> */}

@@ -1,8 +1,8 @@
-import React from 'react';
+import React,{useState} from "react";
 import "./ExpenseItem.css";
 import "./ExpenseDate";
 import ExpenseDate from "./ExpenseDate";
-import Card  from "../UI/composition_example/Card";
+import Card from "../UI/composition_example/Card";
 
 // function ExpenseItem(props)
 // {
@@ -18,20 +18,20 @@ import Card  from "../UI/composition_example/Card";
 // }
 
 function ExpenseItem(data) {
-  return (
-    // <div className="expense-item">
-    //   <ExpenseDate date = {data.expense.date}/>
-    //   <div className="expense-item__description">
-    //     <h2>{data.expense.expenseDesc}</h2>
-    //     <div className="expense-item__price">{data.expense.cost} Rs</div>
-    //   </div>
-    // </div>
 
+  const [expenseDesc, setExpenseDesc] = useState(data.expense.expenseDesc);
+
+  const clickUpdateHandler = () => {
+    setExpenseDesc("Updated Description.");
+  };
+
+  return (
     <Card className="expense-item">
       <ExpenseDate date={data.expense.date} />
       <div className="expense-item__description">
-        <h2>{data.expense.expenseDesc}</h2>
+        <h2>{expenseDesc}</h2>
         <div className="expense-item__price">{data.expense.cost} Rs</div>
+        <button onClick={clickUpdateHandler}> Update Title</button>
       </div>
     </Card>
   );
