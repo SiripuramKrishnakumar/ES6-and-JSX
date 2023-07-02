@@ -8,7 +8,7 @@ const NewExpense = (props) => {
     {
         const expenseValue = {
             ...expenseData,
-            id : Math.random().toString()
+            key : Math.random().toString()
         }
         props.onAddExpenseData(expenseValue);
       // alert(" Id:  "+ expenseValue.id +"\n Title: "+expenseValue.title+"\n Amount: "+ expenseValue.amount+"\n Date: "+ expenseValue.date);

@@ -104,6 +104,19 @@ import "./ExpenseForm.css";
 //Child to Parent Component communication
 
 const ExpenseForm = (props) => {
+
+  const [formView, setFormView] = useState(false);
+
+  function OnClickHandlerViewForm()
+  {
+    setFormView(true);
+  }
+
+  function OnClickHandlerViewButton()
+  {
+    setFormView(false);
+  }
+
   const [enteredValue, SetValue] = useState({
     title: "",
     amount: "",
@@ -129,58 +142,63 @@ const ExpenseForm = (props) => {
   const SubmitHandler = (event) => {
     event.preventDefault();
     props.onSaveExpenseData(enteredValue);
-    // alert("Title: "+enteredValue.title+"\n Amount: "+ enteredValue.amount+"\n Date: "+ enteredValue.date);
   };
 
-  return (
-    <form onSubmit={SubmitHandler}>
-      <div className="new-expense__controls">
-        <div className="new-expense__control">
-          <label>Title</label>
-          <input
-            onChange={(event) => {
-              onInputChangeHandler("title", event.target.value);
-            }}
-            type="text"
-          />
+  let content  =  formView ?
+     (
+      <form onSubmit={SubmitHandler}>
+        <div className="new-expense__controls">
+          <div className="new-expense__control">
+            <label>Title</label>
+            <input
+              onChange={(event) => {
+                onInputChangeHandler("title", event.target.value);
+              }}
+              type="text"
+            />
+          </div>
+          <div className="new-expense__control">
+            <label>Amount</label>
+            <input
+              type="number"
+              min={0.1}
+              max={100}
+              onChange={(event) => {
+                onInputChangeHandler("amount", event.target.value);
+              }}
+            />
+          </div>
+          <div className="new-expense__control">
+            <label>Date</label>
+            <input
+              type="date"
+              min="01/01/2021"
+              max="01/12/2023"
+              onChange={(event) => {
+                onInputChangeHandler("date", event.target.value);
+              }}
+            />
+          </div>
+          <div className="new-expense__actions">
+          <button onClick={OnClickHandlerViewButton}> Cancel </button>
+            <button type="submit">Add New Expense</button>
+          </div>
         </div>
         <div className="new-expense__control">
-          <label>Amount</label>
-          <input
-            type="number"
-            min={0.1}
-            max={100}
-            onChange={(event) => {
-              onInputChangeHandler("amount", event.target.value);
-            }}
-          />
+          <br />
+          <label>Title: {enteredValue.title}</label>
+          <br />
+          <label>Amount: {enteredValue.amount}</label>
+          <br />
+          <label>Date: {enteredValue.date}</label>
+          <br />
         </div>
-        <div className="new-expense__control">
-          <label>Date</label>
-          <input
-            type="date"
-            min="01/01/2021"
-            max="01/12/2023"
-            onChange={(event) => {
-              onInputChangeHandler("date", event.target.value);
-            }}
-          />
-        </div>
-        <div className="new-expense__actions">
-          <button type="submit">Add New Expense</button>
-        </div>
-      </div>
-      <div className="new-expense__control">
-        <br />
-        <label >Title: {enteredValue.title}</label>
-        <br />
-        <label>Amount: {enteredValue.amount}</label>
-        <br />
-        <label>Date: {enteredValue.date}</label>
-        <br />
-      </div>
-    </form>
-  );
+      </form>
+    ) : (<button onClick={OnClickHandlerViewForm}> Add New Expense </button>);
+
+  return <div>{content}</div>;
+
+
 };
 
 export default ExpenseForm;
